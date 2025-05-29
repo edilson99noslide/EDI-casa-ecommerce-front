@@ -1,24 +1,37 @@
 <script setup lang="ts">
-  // COMPONENT
+  // COMPONENTS
   import HomePage from './components/HomePage.vue';
+  import { Button } from '@/components/ui/button';
 
   // COMPOSABLE
   import { useDarkMode } from './composables/useDarkMode';
+  import SunIcon from "@/components/icons/SunIcon.vue";
+  import MoonIcon from "@/components/icons/MoonIcon.vue";
 
   const { isDark, toggleDark } = useDarkMode();
 </script>
 
 <template>
-  <button
+  <Button
+    class="mt-2 ml-2 button-toggle-dark"
+    size="icon"
+    variant="outline"
     @click="toggleDark()"
   >
-    {{ isDark ? 'Alterar para claro' : 'Alterar para escuro' }}
-  </button>
+    <SunIcon v-if="isDark" />
+    <MoonIcon v-if="!isDark" />
+  </Button>
   <HomePage />
 </template>
 
 <style scoped>
-body {
-  transition: background-color 0.3s, color 0.3s;
+.button-toggle-dark {
+  position: fixed;
+
+  bottom: 10px;
+  right: 20px;
+
+  background: var(--color-tertiary);
+  cursor: pointer;
 }
 </style>
