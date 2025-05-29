@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Background */
+  --color-bg: #f8f5f2;
+
+  /* Cores */
+  --color-primary: #3BCEAC;
+  --color-secundary: #f45d48;
+  --color-tertiary: #F8E16C;
+
+  /* Texto */
+  --color-text-primary: #010101;
+}
+
+.dark {
+  --color-bg: #1B2021;
+  --color-text-primary: #f8f5f2;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
