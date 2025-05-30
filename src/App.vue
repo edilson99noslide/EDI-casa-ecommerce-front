@@ -1,17 +1,18 @@
 <script setup lang="ts">
   // COMPONENTS
-  import HomePage from './components/HomePage.vue';
   import { Button } from '@/components/ui/button';
+  import SunIcon from '@/components/icons/SunIcon.vue';
+  import MoonIcon from '@/components/icons/MoonIcon.vue';
 
   // COMPOSABLE
   import { useDarkMode } from './composables/useDarkMode';
-  import SunIcon from "@/components/icons/SunIcon.vue";
-  import MoonIcon from "@/components/icons/MoonIcon.vue";
 
   const { isDark, toggleDark } = useDarkMode();
 </script>
 
 <template>
+  <router-view />
+
   <Button
     class="mt-2 ml-2 button-toggle-dark"
     size="icon"
@@ -21,7 +22,6 @@
     <SunIcon v-if="isDark" />
     <MoonIcon v-if="!isDark" />
   </Button>
-  <HomePage />
 </template>
 
 <style scoped>

@@ -12,7 +12,7 @@
   --color-bg: #f8f5f2;
 
   /* Cores */
-  --color-primary: #3BCEAC;
+  --color-primary: #097251;
   --color-secundary: #f45d48;
   --color-tertiary: #F8E16C;
 
@@ -54,7 +54,7 @@
 }
 
 .dark {
-  --color-bg: #1B2021;
+  --color-bg: linear-gradient(90deg,rgba(29, 32, 46, 1) 1%, rgb(16, 19, 28) 50%, rgb(3, 3, 3) 99%);
   --color-text-primary: #f8f5f2;
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -91,7 +91,7 @@
 }
 
 body {
-  background-color: var(--color-bg);
+  background: var(--color-bg);
   color: var(--color-text-primary);
 }
 
