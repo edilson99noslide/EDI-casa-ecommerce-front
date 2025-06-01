@@ -8,7 +8,7 @@ import BoxIcon from "@/components/icons/BoxIcon.vue";
 <template>
   <div class="menu-site__content">
     <div class="menu-site__box-logo">
-      <img src="/public/vite.svg" alt="logo">
+      <img src="/public/logo.png" alt="logo">
     </div>
 
     <div class="menu-site__box-buttons">
@@ -56,6 +56,10 @@ import BoxIcon from "@/components/icons/BoxIcon.vue";
   padding-right: 10px;
 
   border-right: 1px solid var(--color-text-primary);
+}
+
+.menu-site__box-logo img {
+  width: 100px;
 }
 
 .menu-site__box-buttons {

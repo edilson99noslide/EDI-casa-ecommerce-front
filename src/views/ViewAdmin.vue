@@ -6,19 +6,19 @@
 </script>
 
 <template>
-  <router-link to="/">
-    <Button
-      class="button-router-link"
-      size="icon"
-      variant="outline"
-    >
-      <WebSiteIcon />
-    </Button>
-  </router-link>
+  <div class="w-full h-screen flex justify-center items-center box-login">
+    <router-link to="/">
+      <Button
+        class="button-router-link"
+        size="icon"
+        variant="outline"
+      >
+        <WebSiteIcon />
+      </Button>
+    </router-link>
 
-  <h1 class="text-3xl text-center font-bold mt-2 ml-2">Bem-vindo(a) ao painel</h1>
-
-  <LoginAdmin class="w-full p-3" />
+    <LoginAdmin class="w-full h-full p-3" />
+  </div>
 </template>
 
 <style scoped>
