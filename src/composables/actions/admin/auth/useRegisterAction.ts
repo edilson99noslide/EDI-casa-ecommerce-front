@@ -1,5 +1,8 @@
 import { ref } from 'vue';
 
+// COMPONENT
+import { toast } from 'vue-sonner';
+
 // COMPOSABLE
 import {useRegister} from '@/composables/api/register/useRegister';
 
@@ -21,10 +24,24 @@ export function useRegisterAction() {
         password_confirmation: passwordConfirmationRegister.value
       },
       (responseRegister) => {
+        toast.success(responseRegister.data.message, {
+          duration: 4000,
+          dismissible: false,
+          classes: {
+            toast: 'p-4 bg-primary text-color-bg border rounded-[5px] shadow-xl',
+          }
+        });
         messageRegister.value = responseRegister.message;
       },
       (responseRegister) => {
-        messageRegister.value = responseRegister.message;
+        toast.error(responseRegister.errors.message, {
+          duration: 4000,
+          dismissible: false,
+          classes: {
+            toast: 'p-4 bg-secondary text-color-bg border rounded-[5px] shadow-xl',
+          }
+        });
+        messageRegister.value = responseRegister.errors.message;
       }
     );
   }

@@ -3,6 +3,7 @@
   import { Button } from '@/components/ui/button';
   import SunIcon from '@/components/icons/SunIcon.vue';
   import MoonIcon from '@/components/icons/MoonIcon.vue';
+  import { Toaster } from 'vue-sonner';
 
   // COMPOSABLE
   import { useDarkMode } from './composables/useDarkMode';
@@ -11,6 +12,12 @@
 </script>
 
 <template>
+  <Toaster
+    position="bottom-right"
+    class="!fixed !bottom-15 !right-5 z-[9999] flex flex-col-reverse space-y-2"
+    rich-colors
+  />
+
   <router-view />
 
   <Button

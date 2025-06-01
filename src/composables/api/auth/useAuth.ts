@@ -15,7 +15,7 @@ export function useAuth(){
     if(response.success) {
       success?.(response.data);
     } else {
-      error?.(response.error);
+      error?.(response.errors);
     }
   }
 

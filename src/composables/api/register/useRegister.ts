@@ -18,9 +18,9 @@ export function useRegister() {
     const response = await post('/auth/register', data);
 
     if(response.success) {
-      success?.(response.data);
+      success?.(response);
     } else {
-      error?.(response.data);
+      error?.(response);
     }
   }
 

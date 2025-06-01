@@ -13,6 +13,7 @@
       !isMobile ? 'w-1/2' : 'w-full'
       ]"
     >
+      <img src="/public/logo.png" alt="Logo do login" class="w-50 h-50">
       <CommonLoginAndRegisterTabs />
     </div>
 

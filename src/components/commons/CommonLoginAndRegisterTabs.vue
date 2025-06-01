@@ -10,13 +10,12 @@
   import { useLoginAction } from '@/composables/actions/admin/auth/useLoginAction';
   import { useRegisterAction } from '@/composables/actions/admin/auth/useRegisterAction';
 
-  const { emailLogin, passwordLogin, messageLogin, sendLogin } = useLoginAction();
+  const { emailLogin, passwordLogin, sendLogin } = useLoginAction();
   const {
     nameRegister,
     emailRegister,
     passwordRegister,
     passwordConfirmationRegister,
-    messageRegister,
     sendRegister
   } = useRegisterAction();
 </script>
@@ -24,10 +23,24 @@
 <template>
   <Tabs default-value="login" class="w-[400px]">
     <TabsList class="grid w-full grid-cols-2">
-      <TabsTrigger value="login" class="cursor-pointer">
+      <TabsTrigger
+        value="login"
+        class="cursor-pointer
+          data-[state=active]:bg-[var(--color-primary)]
+          data-[state=active]:text-[var(--color-bg)]
+          dark:data-[state=active]:bg-[var(--color-primary)]
+          dark:data-[state=active]:text-[var(--color-text-primary)]"
+      >
         Login
       </TabsTrigger>
-      <TabsTrigger value="register" class="cursor-pointer">
+      <TabsTrigger
+        value="register"
+        class="cursor-pointer
+          data-[state=active]:bg-[var(--color-primary)]
+          data-[state=active]:text-[var(--color-bg)]
+          dark:data-[state=active]:bg-[var(--color-primary)]
+          dark:data-[state=active]:text-[var(--color-text-primary)]"
+      >
         Cadastro
       </TabsTrigger>
     </TabsList>
@@ -52,11 +65,9 @@
           </div>
         </CardContent>
 
-        <span v-if="messageLogin.length > 0">{{ messageLogin }}</span>
-
         <CardFooter>
           <Button
-            class="cursor-pointer"
+            class="cursor-pointer text-white"
             @click="sendLogin()"
           >
             Fazer login
@@ -93,11 +104,9 @@
           </div>
         </CardContent>
 
-        <span v-if="messageRegister.length > 0">{{ messageRegister }}</span>
-
         <CardFooter>
           <Button
-            class="cursor-pointer"
+            class="cursor-pointer text-white"
             @click="sendRegister()"
           >
             Fazer cadastro
