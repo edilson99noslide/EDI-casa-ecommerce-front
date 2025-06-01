@@ -1,16 +1,23 @@
 <script setup lang="ts">
+  // COMPONENT
+  import CommonLoginAndRegisterTabs from '@/components/commons/CommonLoginAndRegisterTabs.vue';
+  import {useDispositive} from "@/composables/useDispositive.ts";
 
-import FormLoginAdmin from '@/components/admin/login/FormLoginAdmin.vue';
+  const { isMobile } = useDispositive();
 </script>
 
 <template>
   <div class="h-full login-admin__content">
-    <div class="w-1/2 h-full flex flex-col justify-center items-center login-admin__box-inputs">
-      <FormLoginAdmin />
+    <div :class="[
+      'h-full flex flex-col justify-center items-center',
+      !isMobile ? 'w-1/2' : 'w-full'
+      ]"
+    >
+      <CommonLoginAndRegisterTabs />
     </div>
 
-    <div class="w-1/2 login-admin__box-image">
-      <img src="/imagem_do_login.png" alt="Imagem do login" />
+    <div v-if="!isMobile" class="w-1/2 login-admin__box-image">
+      <img v-if="!isMobile" src="/imagem_do_login.png" alt="Imagem do login" />
     </div>
   </div>
 </template>

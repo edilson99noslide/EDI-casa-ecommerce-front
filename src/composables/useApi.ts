@@ -10,16 +10,16 @@ const API_BASE_URL = 'http://localhost:8000/api';
 
 export function useApi() {
   const loading = ref(false);
-  const error = ref<string | null>(null);
+  const errors = ref<string | null>(null);
 
   const request = async <T = any>(
     method: 'get' | 'post' | 'put' | 'delete',
     endpoint: string,
     data?: any,
     config?: AxiosRequestConfig
-  ): Promise<{ success: boolean; data: T | null; error: string | null }> => {
+  ): Promise<{ success: boolean; data: T | null; errors: string | null }> => {
     loading.value = true
-    error.value = null
+    errors.value = null
 
     try {
       const response = await axios({
@@ -33,17 +33,17 @@ export function useApi() {
       return {
         success: true,
         data: response.data,
-        error: null,
+        errors: null,
       }
     } catch (err) {
       const axiosError = err as AxiosError
       const message = axiosError.message || 'Erro desconhecido'
 
-      error.value = message
+      errors.value = message
       return {
         success: false,
         data: null,
-        error: message,
+        errors: message,
       }
     } finally {
       loading.value = false
@@ -52,7 +52,7 @@ export function useApi() {
 
   return {
     loading,
-    error,
+    errors,
     get: <T = any>(endpoint: string, config?: AxiosRequestConfig) =>
       request<T>('get', endpoint, null, config),
 
