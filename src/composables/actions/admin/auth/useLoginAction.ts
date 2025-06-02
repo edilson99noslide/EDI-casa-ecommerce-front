@@ -1,4 +1,5 @@
 import {ref} from 'vue';
+import { useRouter } from 'vue-router';
 
 // COMPONENT
 import { toast } from 'vue-sonner';
@@ -13,6 +14,7 @@ export function useLoginAction() {
   const emailLogin = ref<string>('');
   const passwordLogin = ref<string>('');
   const messageLogin = ref<string>('');
+  const router = useRouter();
 
   function sendLogin() {
     login(
@@ -26,6 +28,8 @@ export function useLoginAction() {
             toast: 'p-4 bg-primary text-color-bg border rounded-[5px] shadow-xl',
           }
         });
+
+        router.push('/admin');
 
         messageLogin.value = responseLogin.message;
       },

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  // COMPONENTS
-  import {Button} from "@/components/ui/button";
-  import WebSiteIcon from "@/components/icons/WebSiteIcon.vue";
-  import LoginAdmin from "@/components/admin/login/LoginAdmin.vue";
+// COMPONENTS
+import {Button} from "@/components/ui/button";
+import WebSiteIcon from "@/components/icons/WebSiteIcon.vue";
+import LoginAdmin from "@/components/admin/login/LoginAdmin.vue";
 </script>
 
 <template>
