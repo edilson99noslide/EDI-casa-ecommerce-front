@@ -5,12 +5,17 @@
   import { Input } from '@/components/ui/input';
   import { Label } from '@/components/ui/label';
   import { Tabs, TabsContent, TabsList, TabsTrigger, } from '@/components/ui/tabs';
+  import {
+    PinInput,
+    PinInputGroup,
+    PinInputSlot,
+  } from '@/components/ui/pin-input';
 
   // COMPOSABLES
   import { useLoginAction } from '@/composables/actions/admin/auth/useLoginAction';
   import { useRegisterAction } from '@/composables/actions/admin/auth/useRegisterAction';
 
-  const { emailLogin, passwordLogin, sendLogin } = useLoginAction();
+  const { emailLogin, passwordLogin, twoFactorRequired, codeTwoFA, sendLogin, sendTwoFactor } = useLoginAction();
   const {
     nameRegister,
     emailRegister,
@@ -21,7 +26,8 @@
 </script>
 
 <template>
-  <Tabs default-value="login" class="w-[400px]">
+  <!-- Login e cadastro -->
+  <Tabs v-if="!twoFactorRequired" default-value="login" class="w-[400px]">
     <TabsList class="grid w-full grid-cols-2">
       <TabsTrigger
         value="login"
@@ -115,6 +121,23 @@
       </Card>
     </TabsContent>
   </Tabs>
+
+  <!-- Validar 2FA -->
+  <PinInput
+    v-else
+    id="pin-input"
+    v-model="codeTwoFA"
+    placeholder="-"
+    @complete="sendTwoFactor(String(codeTwoFA.join('')))"
+  >
+    <PinInputGroup>
+      <PinInputSlot
+        v-for="(id, index) in 6"
+        :key="id"
+        :index="index"
+      />
+    </PinInputGroup>
+  </PinInput>
 </template>
 
 <style scoped>

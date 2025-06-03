@@ -1,7 +1,9 @@
 <script setup lang="ts">
   // COMPONENT
   import CommonLoginAndRegisterTabs from '@/components/commons/CommonLoginAndRegisterTabs.vue';
-  import {useDispositive} from "@/composables/useDispositive.ts";
+
+  // COMPOSABLE
+  import { useDispositive } from "@/composables/useDispositive";
 
   const { isMobile } = useDispositive();
 </script>
