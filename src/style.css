@@ -95,7 +95,7 @@
 }
 
 body {
-  background: var(--color-bg);
+  background: var(--background);
   color: var(--color-text-primary);
 }
 

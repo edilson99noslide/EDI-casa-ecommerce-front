@@ -4,11 +4,13 @@ import { ref } from 'vue';
 import { toast } from 'vue-sonner';
 
 // COMPOSABLE
-import {useRegister} from '@/composables/api/register/useRegister';
-
-const { register } = useRegister();
+import { useRegister } from '@/composables/api/register/useRegister';
+import { useLoading } from '@/composables/useLoading';
 
 export function useRegisterAction() {
+  const { register } = useRegister();
+  const { show, hide } = useLoading();
+
   const nameRegister = ref<string>('');
   const emailRegister = ref<string>('');
   const passwordRegister = ref<string>('');
@@ -16,6 +18,7 @@ export function useRegisterAction() {
   const messageRegister = ref<string>('');
 
   function sendRegister() {
+    show();
     register(
       {
         name: nameRegister.value,
@@ -24,6 +27,7 @@ export function useRegisterAction() {
         password_confirmation: passwordConfirmationRegister.value
       },
       (responseRegister) => {
+        hide();
         toast.success(responseRegister.data.message, {
           duration: 4000,
           dismissible: false,
@@ -34,6 +38,7 @@ export function useRegisterAction() {
         messageRegister.value = responseRegister.message;
       },
       (responseRegister) => {
+        hide();
         toast.error(responseRegister.errors.message, {
           duration: 4000,
           dismissible: false,

@@ -67,7 +67,7 @@
           </div>
           <div class="space-y-1 mt-5">
             <Label for="password">Senha</Label>
-            <Input id="password" v-model="passwordLogin" />
+            <Input id="password" type="password" v-model="passwordLogin" />
           </div>
         </CardContent>
 

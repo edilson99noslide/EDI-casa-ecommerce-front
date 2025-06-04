@@ -1,14 +1,17 @@
 <script setup lang="ts">
   // COMPONENTS
   import { Button } from '@/components/ui/button';
+  import { Toaster } from 'vue-sonner';
   import SunIcon from '@/components/icons/SunIcon.vue';
   import MoonIcon from '@/components/icons/MoonIcon.vue';
-  import { Toaster } from 'vue-sonner';
+  import CommonLoading from '@/components/commons/CommonLoading.vue';
 
   // COMPOSABLE
   import { useDarkMode } from './composables/useDarkMode';
+  import { useLoading } from '@/composables/useLoading';
 
   const { isDark, toggleDark } = useDarkMode();
+  const { isLoading } = useLoading();
 </script>
 
 <template>
@@ -29,6 +32,8 @@
     <SunIcon v-if="isDark" />
     <MoonIcon v-if="!isDark" />
   </Button>
+
+  <CommonLoading :visible="isLoading" />
 </template>
 
 <style scoped>
