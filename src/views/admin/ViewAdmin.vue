@@ -1,9 +1,9 @@
 <script setup lang="ts">
-
+  import SideBarLayoutAdmin from "@/components/admin/side-bar/SideBarLayoutAdmin.vue";
 </script>
 
 <template>
-  <div>Painel admin</div>
+  <SideBarLayoutAdmin />
 </template>
 
 <style scoped>

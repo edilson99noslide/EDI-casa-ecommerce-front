@@ -1,9 +1,9 @@
 <script setup lang="ts">
+  import { MoonStar, Sun } from 'lucide-vue-next';
+
   // COMPONENTS
   import { Button } from '@/components/ui/button';
   import { Toaster } from 'vue-sonner';
-  import SunIcon from '@/components/icons/SunIcon.vue';
-  import MoonIcon from '@/components/icons/MoonIcon.vue';
   import CommonLoading from '@/components/commons/CommonLoading.vue';
 
   // COMPOSABLE
@@ -29,8 +29,8 @@
     variant="outline"
     @click="toggleDark()"
   >
-    <SunIcon v-if="isDark" />
-    <MoonIcon v-if="!isDark" />
+    <Sun v-if="isDark" />
+    <MoonStar v-if="!isDark" />
   </Button>
 
   <CommonLoading :visible="isLoading" />
@@ -43,7 +43,6 @@
   bottom: 10px;
   right: 20px;
 
-  background: var(--color-tertiary);
   cursor: pointer;
 }
 </style>

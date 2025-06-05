@@ -1,8 +1,7 @@
 <script setup lang="ts">
+import { ShoppingCart, User } from 'lucide-vue-next';
 
 import {Button} from "@/components/ui/button";
-import EnterIcon from "@/components/icons/EnterIcon.vue";
-import BoxIcon from "@/components/icons/BoxIcon.vue";
 </script>
 
 <template>
@@ -14,21 +13,21 @@ import BoxIcon from "@/components/icons/BoxIcon.vue";
     <div class="menu-site__box-buttons">
       <router-link to="/">
         <Button
-          class="button-router-link"
+          class="button-router-link w-full px-5"
           size="icon"
           variant="outline"
         >
-          <EnterIcon />
+          Login <User />
         </Button>
       </router-link>
 
       <router-link to="/">
         <Button
-          class="button-router-link"
+          class="button-router-link w-full px-5"
           size="icon"
           variant="outline"
         >
-          <BoxIcon />
+          Carrinho (0) <ShoppingCart />
         </Button>
       </router-link>
     </div>
@@ -74,7 +73,6 @@ import BoxIcon from "@/components/icons/BoxIcon.vue";
 }
 
 .button-router-link {
-  background: var(--color-tertiary);
   cursor: pointer;
 }
 </style>
