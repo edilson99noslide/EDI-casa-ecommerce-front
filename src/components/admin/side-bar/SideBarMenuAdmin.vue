@@ -11,6 +11,7 @@
     SidebarMenuButton,
     SidebarMenuItem,
   } from '@/components/ui/sidebar';
+  import SideBarFooterAdmin from '@/components/admin/side-bar/SideBarFooterAdmin.vue';
 
   const items = [
     {
@@ -39,16 +40,22 @@
       icon: Settings,
     },
   ];
+
+  // COMPOSABLE
+  import { useUser } from '@/composables/actions/admin/me/useUserAction';
+
+  const { user } = useUser();
 </script>
 
 <template>
   <Sidebar>
     <SidebarHeader>
       <img
-        src="/public/logo.png"
-        alt="logo do site"
-        class="w-30 h-30"
+        src="@/assets/admin/images/default-image-user.png"
+        alt="Imagem do usuário"
+        class="w-15 h-15 border rounded-2xl"
       >
+      <div class="border-t mt-3"></div>
     </SidebarHeader>
     <SidebarContent>
       <SidebarGroup>
@@ -68,7 +75,9 @@
       </SidebarGroup>
     </SidebarContent>
     <SidebarFooter>
-      Footer
+      <SideBarFooterAdmin
+        :user="user"
+      />
     </SidebarFooter>
   </Sidebar>
 </template>

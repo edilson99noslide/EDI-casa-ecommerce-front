@@ -26,11 +26,13 @@ router.beforeEach(async (to, _, next) => {
   if (to.meta.requiresAuth) {
     const api = useApi();
 
-    const { errors } = await api.get('/auth/me');
+    const { data, errors } = await api.get('/auth/me');
 
     if(errors) {
+      localStorage.removeItem('user');
       next('/admin/login');
     } else {
+      localStorage.setItem('user', JSON.stringify(data));
       next();
     }
   } else {
