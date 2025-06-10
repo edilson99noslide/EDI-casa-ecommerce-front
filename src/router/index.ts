@@ -23,9 +23,9 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
-  if (to.meta.requiresAuth) {
-    const api = useApi();
+  const api = useApi();
 
+  if (to.meta.requiresAuth) {
     const { data, errors } = await api.get('/auth/me');
 
     if(errors) {
@@ -33,6 +33,17 @@ router.beforeEach(async (to, _, next) => {
       next('/admin/login');
     } else {
       localStorage.setItem('user', JSON.stringify(data));
+      next();
+    }
+  }
+
+  else if(to.path === '/admin/login') {
+    const { data, errors } = await api.get('/auth/me');
+
+    if(!errors) {
+      localStorage.setItem('user', JSON.stringify(data));
+      next('/admin');
+    } else {
       next();
     }
   } else {

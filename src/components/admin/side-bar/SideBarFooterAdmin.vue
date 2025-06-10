@@ -10,6 +10,11 @@
     DropdownMenuTrigger,
   } from '@/components/ui/dropdown-menu';
 
+  // COMPOSABLE
+  import { useLogoutAction } from '@/composables/actions/admin/auth/useLogoutAction';
+
+  const { logoutUser } = useLogoutAction();
+
   defineProps<{
     user: any;
   }>();
@@ -36,7 +41,11 @@
             <DropdownMenuLabel>Minha conta</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Perfil</DropdownMenuItem>
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem
+              @click="logoutUser"
+            >
+              Logout
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>

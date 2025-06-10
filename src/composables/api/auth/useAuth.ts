@@ -19,8 +19,17 @@ export function useAuth(){
     }
   }
 
-  async function logout() {
-    await post('/auth/logout');
+  async function logout(
+    success?: (data?: any) => void,
+    error?: (error: any) => void
+  ) {
+    const response = await post('/auth/logout');
+
+    if(response.success) {
+      success?.(response.data);
+    } else {
+      error?.(response.errors);
+    }
   }
 
   async function me() {

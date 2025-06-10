@@ -1,6 +1,6 @@
 <script setup lang="ts">
   // COMPONENTS
-  import { ShoppingCart, Home, Box, Users, Settings } from 'lucide-vue-next';
+  import { ShoppingCart, Home, Box, Users, User, Settings } from 'lucide-vue-next';
   import {
     Sidebar,
     SidebarContent, SidebarFooter,
@@ -35,6 +35,11 @@
       icon: Users,
     },
     {
+      title: "Usuários",
+      url: "#",
+      icon: User,
+    },
+    {
       title: "Configurações",
       url: "#",
       icon: Settings,
@@ -42,7 +47,7 @@
   ];
 
   // COMPOSABLE
-  import { useUser } from '@/composables/actions/admin/me/useUserAction';
+  import { useUser } from '@/composables/actions/admin/user/useUserAction';
 
   const { user } = useUser();
 </script>
