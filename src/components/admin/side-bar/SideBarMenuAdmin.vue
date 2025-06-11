@@ -16,7 +16,7 @@
   const items = [
     {
       title: "Início",
-      url: "#",
+      url: "/admin",
       icon: Home,
     },
     {
@@ -36,7 +36,7 @@
     },
     {
       title: "Usuários",
-      url: "#",
+      url: "/admin/users",
       icon: User,
     },
     {
@@ -69,10 +69,10 @@
           <SidebarMenu>
             <SidebarMenuItem v-for="item in items" :key="item.title">
               <SidebarMenuButton asChild>
-                <a :href="item.url">
+                <router-link :to="item.url">
                   <component :is="item.icon" />
                   <span>{{item.title}}</span>
-                </a>
+                </router-link>
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>

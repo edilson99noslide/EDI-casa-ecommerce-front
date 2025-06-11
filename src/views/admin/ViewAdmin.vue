@@ -4,6 +4,7 @@
 
 <template>
   <SideBarLayoutAdmin />
+  <router-view />
 </template>
 
 <style scoped>

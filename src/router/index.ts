@@ -1,5 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import {useApi} from "@/composables/useApi.ts";
+import { createRouter, createWebHistory } from 'vue-router'
+import { useUserStore } from '@/stores/useUser';
 
 const routes = [
   {
@@ -7,13 +7,25 @@ const routes = [
     component: () => import('@/views/site/ViewSite.vue')
   },
   {
+    path: '/admin/login',
+    component: () => import('@/views/admin/ViewAdminLogin.vue'),
+  },
+  {
     path: '/admin',
     component: () => import('@/views/admin/ViewAdmin.vue'),
     meta: { requiresAuth: true },
-  },
-  {
-    path: '/admin/login',
-    component: () => import('@/views/admin/ViewAdminLogin.vue'),
+    children: [
+      {
+        path: '',
+        name: 'admin.dashboard',
+        component: () => import('@/views/admin/dashboard/ViewDashboard.vue'),
+      },
+      {
+        path: 'users',
+        name: 'admin.users',
+        component: () => import('@/views/admin/user/listing/ViewUserListing.vue'),
+      }
+    ]
   }
 ]
 
@@ -23,31 +35,21 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, _, next) => {
-  const api = useApi();
+  const store = useUserStore();
 
-  if (to.meta.requiresAuth) {
-    const { data, errors } = await api.get('/auth/me');
-
-    if(errors) {
-      localStorage.removeItem('user');
-      next('/admin/login');
+  try {
+    await store.fetchUser(); // Tenta buscar o usuário apenas uma vez
+    if (to.path === '/admin/login') {
+      next('/admin'); // Se já logado, redireciona do login
     } else {
-      localStorage.setItem('user', JSON.stringify(data));
-      next();
+      next(); // Se tudo certo, continua
     }
-  }
-
-  else if(to.path === '/admin/login') {
-    const { data, errors } = await api.get('/auth/me');
-
-    if(!errors) {
-      localStorage.setItem('user', JSON.stringify(data));
-      next('/admin');
+  } catch (error) {
+    if (to.meta.requiresAuth) {
+      next('/admin/login'); // Não autenticado, redireciona
     } else {
-      next();
+      next(); // rota pública
     }
-  } else {
-    next();
   }
 })
 
