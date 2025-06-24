@@ -5,11 +5,15 @@
 </script>
 
 <template>
-  <SidebarProvider>
+  <SidebarProvider class="flex h-screen w-screen">
     <SideBarMenuAdmin />
-    <main>
+    <main class="flex-1 p-4 overflow-y-auto">
       <SidebarTrigger />
-      <RouterView />
+      <router-view />
     </main>
   </SidebarProvider>
 </template>
+
+<style scoped>
+
+</style>

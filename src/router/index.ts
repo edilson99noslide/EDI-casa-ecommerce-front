@@ -13,17 +13,19 @@ const routes = [
   {
     path: '/admin',
     component: () => import('@/views/admin/ViewAdmin.vue'),
-    meta: { requiresAuth: true },
+    meta: { requiresAuth: true, title: 'Home' },
     children: [
       {
         path: '',
         name: 'admin.dashboard',
         component: () => import('@/views/admin/dashboard/ViewDashboard.vue'),
+        meta: { title: 'Dashboard' }
       },
       {
         path: 'users',
         name: 'admin.users',
         component: () => import('@/views/admin/user/listing/ViewUserListing.vue'),
+        meta: { title: 'Usuários' }
       }
     ]
   }

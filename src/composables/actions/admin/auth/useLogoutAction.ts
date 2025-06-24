@@ -7,9 +7,12 @@ import { toast } from 'vue-sonner';
 import { useAuth } from '@/composables/api/auth/useAuth';
 import { useLoading } from '@/composables/useLoading';
 
+import { useUserStore } from '@/stores/useUser';
+
 export function useLogoutAction() {
   const { logout } = useAuth();
   const { show, hide } = useLoading();
+  const store = useUserStore();
 
   function logoutUser() {
     show();
@@ -18,6 +21,7 @@ export function useLogoutAction() {
       () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
+        store.logout();
 
         hide();
 
