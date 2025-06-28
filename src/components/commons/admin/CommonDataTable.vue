@@ -8,14 +8,11 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-const headers = ['nome', 'email']
-
-const rows = [
-  {
-    name: 'nome',
-    email: 'email@example.com'
-  }
-]
+// PROPS
+defineProps<{
+  columns: string[],
+  rows: any[],
+}>();
 </script>
 
 <template>
@@ -23,7 +20,7 @@ const rows = [
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead v-for="(header, headerIndex) in headers" :key="'col-header-' + headerIndex">
+          <TableHead v-for="(header, headerIndex) in columns" :key="'col-header-' + headerIndex">
             {{ header }}
           </TableHead>
         </TableRow>
