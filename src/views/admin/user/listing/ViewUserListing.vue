@@ -1,23 +1,10 @@
 <script setup lang="ts">
-  // COMPONENT
-  import CommonBreadcrumb from '@/components/commons/admin/CommonBreadcrumb.vue';
-  import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+  // COMPONENTS
+  import CommonListingTable from "@/components/commons/admin/CommonListingTable.vue";
 </script>
 
 <template>
-  <div class="w-full h-250 p-5 flex justify-center">
-    <Card class="w-full h-full">
-      <CardHeader>
-        <CardTitle>Título</CardTitle>
-        <CardDescription>Descrição</CardDescription>
-        <CommonBreadcrumb />
-      </CardHeader>
-      <CardContent>
-        Listagem de usuários
-      </CardContent>
-      <CardHeader>Footer</CardHeader>
-    </Card>
-  </div>
+  <CommonListingTable />
 </template>
 
 <style scoped>
